@@ -1,20 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
 </h:head>
 <h:body>
-	<h1>Hello World PrimeFaces</h1>
-
-	<h:form>
-	<p:editor value="#{editor.value}" />
-	</h:form>
-
+    <h1>Hello World PrimeFaces</h1>
+    <div class="container">
+    <h:form >
+        <div class="row form-group">
+            <h:outputLabel for="name" styleClass="col-lg-6 " value="Nom :"/>
+            <p:inputText id="name" styleClass="col-lg-6 form-control" value="#{formulaire.nom}"></p:inputText>
+        </div>
+        <br/>
+        <div class="row form-group">
+            <h:outputLabel for="fname" styleClass="col-lg-10 " value="Prénom :"/>
+            <p:inputText id="fname" styleClass="form-control" value="#{formulaire.prenom}"></p:inputText>
+        </div>
+        <br/>
+        <div class="row form-group">
+            <h:outputLabel for="date"  styleClass="col-lg-10 " value="Date Naissance :"/>
+            <p:calendar id="date" styleClass="form-control" value="#{formulaire.dateNaissance}"></p:calendar>
+        </div>
+        <br/>
+        <p:commandButton styleClass="btn btn-danger" action="#{formulaire.valider()}" value="Valider"></p:commandButton>
+    </h:form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </h:body>
 </html>
