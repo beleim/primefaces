@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+</h:head>
+<h:body>
+    <h1>Liste Patients</h1>
+    <div class="container">
+    <h:form >
+        <p:dataTable id="tablePatients" value="#{patients.lstPatient}" var="pat"
+                     rows="5"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+            <p:column headerText="ID">
+                <h:outputText value="#{pat.idPatient}"></h:outputText>
+            </p:column>
+            <p:column headerText="NOM">
+                <h:outputText value="#{pat.nomPatient}"></h:outputText>
+            </p:column>
+            <p:column headerText="DATE NAISSANCE">
+                <h:outputText value="#{pat.dateNaissance}"></h:outputText>
+            </p:column>
+            <p:column headerText="ADRESSE">
+                <h:outputText value="#{pat.adresse}"></h:outputText>
+            </p:column>
+        </p:dataTable>
+        <h:commandLink>
+            <p:graphicImage name="./XLS.png" width="50px" height="50px"/>
+            <p:dataExporter type="xls" target="tablePatients" fileName="listePatients" pageOnly="true"/>
+        </h:commandLink>
+
+        <h:commandLink>
+            <p:graphicImage name="./pdf.png"  width="50px" height="50px"/>
+            <p:dataExporter type="pdf" target="tablePatients" fileName="listePatients" pageOnly="true" />
+        </h:commandLink>
+    </h:form>
+    </div>
+
+</h:body>
+</html>
