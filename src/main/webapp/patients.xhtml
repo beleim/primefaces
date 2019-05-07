@@ -29,16 +29,19 @@
                 <h:outputText value="#{pat.dateNaissance}"></h:outputText>
             </p:column>
             <p:column headerText="ADRESSE">
+                <f:facet name="header">
+                    <h:outputText value="ADRESSE" />
+                </f:facet>
                 <h:outputText value="#{pat.adresse}"></h:outputText>
             </p:column>
         </p:dataTable>
         <h:commandLink>
-            <p:graphicImage name="./XLS.png" width="50px" height="50px"/>
+            <p:graphicImage url="./XLS.png" width="30px" height="30px"/>
             <p:dataExporter type="xls" target="tablePatients" fileName="listePatients" pageOnly="true"/>
         </h:commandLink>
 
         <h:commandLink>
-            <p:graphicImage name="./pdf.png"  width="50px" height="50px"/>
+            <p:graphicImage url="./pdf.png"  width="30px" height="30px"/>
             <p:dataExporter type="pdf" target="tablePatients" fileName="listePatients" pageOnly="true" />
         </h:commandLink>
     </h:form>
