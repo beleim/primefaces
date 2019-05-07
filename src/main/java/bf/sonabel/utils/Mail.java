@@ -45,7 +45,7 @@ public class Mail {
 
             Transport.send(message);
 
-            System.out.println("Evnoyé");
+            System.out.println("Envoyé");
 
         } catch (Exception e) {
             e.printStackTrace();

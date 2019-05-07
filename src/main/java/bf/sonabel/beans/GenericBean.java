@@ -8,6 +8,7 @@ import bf.sonabel.models.dtos.ModelGeneric;
 import bf.sonabel.utils.Mail;
 import org.primefaces.model.DefaultScheduleEvent;
 import org.primefaces.model.DefaultScheduleModel;
+import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
 import javax.annotation.PostConstruct;
@@ -27,6 +28,15 @@ public class GenericBean {
 
     private Patient patient;
 
+    public ScheduleEvent getEvent() {
+        return event;
+    }
+
+    public void setEvent(ScheduleEvent event) {
+        this.event = event;
+    }
+
+    private ScheduleEvent event;
     //Permet de charger le contenu avant affichage de la page
     @PostConstruct
     public void initialization() {
@@ -84,12 +94,17 @@ public class GenericBean {
         agenda.addEvent(new DefaultScheduleEvent("Test événement", c.getTime(), c.getTime()));
     }
 
+    public void nouvelEvenement() {
+        event = new DefaultScheduleEvent();
+    }
+
 
     public void creerEvenement() {
-        Calendar c =Calendar.getInstance();
-        c.set(2019, Calendar.MAY, 21);
-        agenda.addEvent(new DefaultScheduleEvent("Test événement", c.getTime(), c.getTime()));
-        Mail.envoyerEmail("boubacar.beleim@sonabel.bf", "Bonjour", "Votre RDV est fixé pour le "+ c.getTime());
+        //Calendar c =Calendar.getInstance();
+        //c.set(2019, Calendar.MAY, 21);
+        //agenda.addEvent(new DefaultScheduleEvent("Test événement", c.getTime(), c.getTime()));
+        agenda.addEvent(event);
+        Mail.envoyerEmail("boubacar.beleim@sonabel.bf", "Bonjour", "Votre RDV est fixé pour le "+ event.getStartDate());
 
     }
     public void redirection(String page) throws IOException {
