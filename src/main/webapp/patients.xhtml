@@ -13,38 +13,50 @@
 <h:body>
     <h1>Liste Patients</h1>
     <div class="container">
-    <h:form >
-        <p:dataTable id="tablePatients" value="#{patients.lstPatient}" var="pat"
-                     rows="5"
-                     paginator="true"
-                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                     rowsPerPageTemplate="5,10,15">
-            <p:column headerText="ID">
-                <h:outputText value="#{pat.idPatient}"></h:outputText>
-            </p:column>
-            <p:column headerText="NOM">
-                <h:outputText value="#{pat.nomPatient}"></h:outputText>
-            </p:column>
-            <p:column headerText="DATE NAISSANCE">
-                <h:outputText value="#{pat.dateNaissance}"></h:outputText>
-            </p:column>
-            <p:column headerText="ADRESSE">
-                <f:facet name="header">
-                    <h:outputText value="ADRESSE" />
-                </f:facet>
-                <h:outputText value="#{pat.adresse}"></h:outputText>
-            </p:column>
-        </p:dataTable>
-        <h:commandLink>
-            <p:graphicImage url="./XLS.png" width="30px" height="30px"/>
-            <p:dataExporter type="xls" target="tablePatients" fileName="listePatients" pageOnly="true"/>
-        </h:commandLink>
+        <h:form >
+            <p:dataTable id="tablePatients" value="#{generic.modelGeneric.lstPatient}" var="pat"
+                         rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column headerText="ID">
+                    <h:outputText value="#{pat.idPatient}"></h:outputText>
+                </p:column>
+                <p:column headerText="NOM">
+                    <h:outputText value="#{pat.nomPatient}"></h:outputText>
+                </p:column>
+                <p:column headerText="DATE NAISSANCE">
+                    <h:outputText  value="#{pat.dateNaissance}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" type="date"></f:convertDateTime>
+                    </h:outputText>
+                </p:column>
+                <p:column headerText="ADRESSE">
+                    <f:facet name="header">
+                        <h:outputText value="ADRESSE" />
+                    </f:facet>
+                    <h:outputText value="#{pat.adresse}"></h:outputText>
+                </p:column>
 
-        <h:commandLink>
-            <p:graphicImage url="./pdf.png"  width="30px" height="30px"/>
-            <p:dataExporter type="pdf" target="tablePatients" fileName="listePatients" pageOnly="true" />
-        </h:commandLink>
-    </h:form>
+                <p:column headerText="">
+
+                   <p:commandButton value="modifier" action="#{generic.modifierPatient(pat)}"></p:commandButton>
+                    <p:commandButton value="supprimer" action="#{generic.supprimerPatient(pat)}"></p:commandButton>
+                </p:column>
+            </p:dataTable>
+            <h:commandLink>
+                <p:graphicImage url="./XLS.png" width="30px" height="30px"/>
+                <p:dataExporter type="xls" target="tablePatients" fileName="listePatients" pageOnly="true"/>
+            </h:commandLink>
+
+            <h:commandLink>
+                <p:graphicImage url="./pdf.png"  width="30px" height="30px"/>
+                <p:dataExporter type="pdf" target="tablePatients" fileName="listePatients" pageOnly="true" />
+            </h:commandLink>
+
+
+
+            <p:commandButton value="Ajouter Patient " action="#{generic.ajouterPatient()}"></p:commandButton>
+        </h:form>
     </div>
 
 </h:body>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+</h:head>
+<h:body>
+    <h1>Liste Patients</h1>
+    <div class="container">
+    <h:form >
+        <p:dataTable id="tablePatients" value="#{generic.modelGeneric.lstMedecin}" var="pat"
+                     rows="5"
+                     paginator="true"
+                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     rowsPerPageTemplate="5,10,15">
+            <p:column headerText="ID">
+                <h:outputText value="#{pat.idMedecin}"></h:outputText>
+            </p:column>
+            <p:column headerText="NOM">
+                <h:outputText value="#{pat.nomMedecin}"></h:outputText>
+            </p:column>
+        </p:dataTable>
+        <h:commandLink>
+            <p:graphicImage url="./XLS.png" width="30px" height="30px"/>
+            <p:dataExporter type="xls" target="tablePatients" fileName="listePatients" pageOnly="true"/>
+        </h:commandLink>
+
+        <h:commandLink>
+            <p:graphicImage url="./pdf.png"  width="30px" height="30px"/>
+            <p:dataExporter type="pdf" target="tablePatients" fileName="listePatients" pageOnly="true" />
+        </h:commandLink>
+    </h:form>
+    </div>
+
+</h:body>
+</html>

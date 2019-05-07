@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
+</h:head>
+<h:body>
+    <h1>Liste Patients</h1>
+    <div class="container">
+    <h:form >
+        <p:panelGrid columns="2">
+            <h:outputText value="Nom"></h:outputText>
+            <h:inputText value="#{generic.patient.nomPatient}"></h:inputText>
+
+            <h:outputText value="Date Naissance"></h:outputText>
+            <p:calendar value="#{generic.patient.dateNaissance}"></p:calendar>
+
+            <h:outputText value="Adresse"></h:outputText>
+            <h:inputText value="#{generic.patient.adresse}"></h:inputText>
+
+            <p:commandButton action="#{generic.redirection('patients')}" value="Annuler"></p:commandButton>
+            <p:commandButton action="#{generic.validerPatient}" value="Valider"></p:commandButton>
+        </p:panelGrid>
+    </h:form>
+    </div>
+
+</h:body>
+</html>
