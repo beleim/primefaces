@@ -24,6 +24,8 @@ public class PatientDAO extends GenericDAO<Patient>{
 
     public List<Patient> getPatientsHibernate() {
         //return (List<Patient>) ConnectionUtils.getEm().createNativeQuery("Select * from Patients", Patient.class).getResultList();
+        // Limiter les résultats à 9000 élements
+        //return (List<Patient>) ConnectionUtils.getEm().createQuery("from Patient p").setMaxResults(9000).getResultList();
         return (List<Patient>) ConnectionUtils.getEm().createQuery("from Patient p").getResultList();
     }
     /*public List<Patient> getPatients() {

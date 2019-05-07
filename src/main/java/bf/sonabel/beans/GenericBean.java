@@ -5,12 +5,18 @@ import bf.sonabel.dao.PatientDAO;
 import bf.sonabel.models.Medecin;
 import bf.sonabel.models.Patient;
 import bf.sonabel.models.dtos.ModelGeneric;
+import bf.sonabel.utils.Mail;
+import org.primefaces.model.DefaultScheduleEvent;
+import org.primefaces.model.DefaultScheduleModel;
+import org.primefaces.model.ScheduleModel;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @ManagedBean(name="generic")
@@ -67,6 +73,25 @@ public class GenericBean {
         FacesContext.getCurrentInstance().getExternalContext().redirect("./patientForm.xhtml");
     }*/
 
+    private ScheduleModel agenda = new DefaultScheduleModel();
+
+
+
+    public void chargerAgenda() {
+        agenda.addEvent(new DefaultScheduleEvent("Mon événement", new Date(), new Date()));
+        Calendar c =Calendar.getInstance();
+        c.set(2019, Calendar.MAY, 1);
+        agenda.addEvent(new DefaultScheduleEvent("Test événement", c.getTime(), c.getTime()));
+    }
+
+
+    public void creerEvenement() {
+        Calendar c =Calendar.getInstance();
+        c.set(2019, Calendar.MAY, 21);
+        agenda.addEvent(new DefaultScheduleEvent("Test événement", c.getTime(), c.getTime()));
+        Mail.envoyerEmail("boubacar.beleim@sonabel.bf", "Bonjour", "Votre RDV est fixé pour le "+ c.getTime());
+
+    }
     public void redirection(String page) throws IOException {
         rechargement();
         FacesContext.getCurrentInstance().getExternalContext().redirect("./"+page+".xhtml");
@@ -93,5 +118,13 @@ public class GenericBean {
 
     public void setPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    public ScheduleModel getAgenda() {
+        return agenda;
+    }
+
+    public void setAgenda(ScheduleModel agenda) {
+        this.agenda = agenda;
     }
 }
