@@ -104,7 +104,7 @@ public class GenericBean {
         //c.set(2019, Calendar.MAY, 21);
         //agenda.addEvent(new DefaultScheduleEvent("Test événement", c.getTime(), c.getTime()));
         agenda.addEvent(event);
-        Mail.envoyerEmail("boubacar.beleim@sonabel.bf", "Bonjour", "Votre RDV est fixé pour le "+ event.getStartDate());
+        //Mail.envoyerEmail("boubacar.beleim@sonabel.bf", "Bonjour", "Votre RDV est fixé pour le "+ event.getStartDate());
 
     }
     public void redirection(String page) throws IOException {

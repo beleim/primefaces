@@ -2,19 +2,21 @@ package bf.sonabel.utils;
 
 
 
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.*;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import java.util.Properties;
 
 public class Mail {
 
 
 
-    public static void envoyerEmail(String destinataire, String objet, String corps) {
+    public static void envoyerEmail(String destinataire, String objet, String corps, String fichier) {
 
         final String username = "testsonabelmindtech@gmail.com";
         final String password = "testsonabelmindtech.0";
@@ -41,11 +43,29 @@ public class Mail {
                     InternetAddress.parse(destinataire)
             );
             message.setSubject(objet);
-            message.setText(corps);
+           // message.setText(corps);
+
+
+            Multipart multipart = new MimeMultipart();
+
+            BodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setText(corps);
+
+            multipart.addBodyPart(messageBodyPart);
+
+            messageBodyPart = new MimeBodyPart();
+            String filename = "C:\\Users\\Younes\\Desktop\\old\\purecss-francine-master\\preview.jpg";
+            DataSource source = new FileDataSource(filename);
+            messageBodyPart.setDataHandler(new DataHandler(source));
+            messageBodyPart.setFileName(filename);
+            multipart.addBodyPart(messageBodyPart);
+
+            // Send the complete message parts
+            message.setContent(multipart);
 
             Transport.send(message);
 
-            System.out.println("Envoyé");
+            System.out.println("Envoyé à "+ destinataire);
 
         } catch (Exception e) {
             e.printStackTrace();

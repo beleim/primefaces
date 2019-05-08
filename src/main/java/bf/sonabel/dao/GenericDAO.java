@@ -12,10 +12,18 @@ public class GenericDAO<T> {
 
     private EntityManager em = ConnectionUtils.getEm();
     private Class<T> var;
+    private T t;
 
+    public T getT() {
+        return t;
+    }
+
+    public void setT(T t) {
+        this.t = t;
+    }
 
     public List<T> getAll() {
-        return em.createQuery("select x from "+ var.getSimpleName() + " x").getResultList();
+        return em.createQuery("select x from "+ t.getClass().getSimpleName() + " x").getResultList();
     }
 
 
