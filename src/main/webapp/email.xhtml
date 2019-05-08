@@ -21,9 +21,9 @@
             <p:outputLabel value="Corps email"></p:outputLabel>
             <p:editor value="#{editor.value}"></p:editor>
             <p:outputLabel value="PJ"></p:outputLabel>
-            <p:fileUpload fileUploadListener="#{editor.handleFileUpload}" mode="advanced" dragDropSupport="true"
+            <p:fileUpload mode="advanced" dragDropSupport="true"
                           update="messages" sizeLimit="100000" fileLimit="1"  />
-            <p:commandButton action="#{editor.envoyerEmail}" value="Envoyer"></p:commandButton>
+            <p:commandButton actionListener="#{editor.handleFileUpload}" value="Envoyer" ajax="false"></p:commandButton>
         </p:panelGrid>
 
     </h:form>

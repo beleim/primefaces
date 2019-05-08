@@ -44,6 +44,8 @@
           <element id="library" level="project" name="Maven: com.sun.faces:jsf-api:2.1.11" />
           <element id="library" level="project" name="Maven: com.sun.faces:jsf-impl:2.1.11" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.2.1" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.5" />
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
           <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.1" />
           <element id="library" level="project" name="Maven: org.glassfish.web:el-impl:2.2" />
